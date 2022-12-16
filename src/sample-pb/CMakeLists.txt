@@ -13,9 +13,6 @@ message(STATUS "[sample-pb] Protobuf_VERSION : ${Protobuf_VERSION}")
 message(STATUS "[sample-pb] Protobuf_INCLUDE_DIRS : ${Protobuf_INCLUDE_DIRS}")
 message(STATUS "[sample-pb] Protobuf_LIBRARIES : ${Protobuf_LIBRARIES}")
 
-include_directories(${Protobuf_INCLUDE_DIRS})
-include_directories(${CMAKE_CURRENT_BINARY_DIR})
-
 # ::由于PROTOBUF_GENERATE_CPP只能编译一个目录下的proto，尽量选择手动生成pb.cc，参考general-cpp.bat
 
 set(sample_files
@@ -30,7 +27,7 @@ set(sample_files
     pb_cpp/res/HeartbeatRes.pb.cc
     pb_cpp/res/QuoteSubscribeTickRes.pb.cc
     pb_cpp/res/QuoteUnsubscribeTickRes.pb.cc
-    Sample.cpp
+    SamplePB.cpp
 )
 
 set(sample_headers
@@ -45,7 +42,7 @@ set(sample_headers
     pb_cpp/res/HeartbeatRes.pb.cc
     pb_cpp/res/QuoteSubscribeTickRes.pb.cc
     pb_cpp/res/QuoteUnsubscribeTickRes.pb.cc
-    Sample.h
+    SamplePB.h
 )
 
 add_library(${PROJECT_NAME} STATIC
@@ -54,12 +51,20 @@ add_library(${PROJECT_NAME} STATIC
 )
 
 target_link_libraries(${PROJECT_NAME}
-    ${Protobuf_LIBRARIES}
+    PUBLIC ${Protobuf_LIBRARIES}
 )
 
+# 不暴露protobuf相关内容，仅暴露SmaplePB
 target_include_directories(${PROJECT_NAME}
-    PUBLIC ${PROJECT_SOURCE_DIR}/pb_cpp
     PUBLIC ${Protobuf_INCLUDE_DIRS}
+    PUBLIC ${PROJECT_SOURCE_DIR}/pb_cpp
+    PUBLIC ${PROJECT_SOURCE_DIR}
+)
+
+install(TARGETS ${PROJECT_NAME}
+    RUNTIME DESTINATION bin
+    LIBRARY DESTINATION lib
+    ARCHIVE DESTINATION lib
 )
 
 message("[sample-pb] -------- done")

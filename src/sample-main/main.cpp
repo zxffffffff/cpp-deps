@@ -2,7 +2,7 @@
 //
 
 #include "main.h"
-#include "Sample.h"
+#include "SampleDataCenter.h"
 
 using namespace std;
 
@@ -10,7 +10,6 @@ int main()
 {
 	cout << "Hello CMake." << endl;
 
-	SamplePB sample_pb;
-
+  SampleDataCenter sample_datacenter;
 	return 0;
 }

@@ -1,4 +1,4 @@
-#include "Sample.h"
+#include "SamplePB.h"
 #include "Req.pb.h"
 #include "Res.pb.h"
 
