@@ -5,11 +5,6 @@
 
 
 # [3] build exit [0,1]
-function success
-{
-    echo "[3] build success!!!"
-    exit 0
-}
 function error
 {
     echo "[3] build error!!!"
@@ -76,8 +71,8 @@ cd ${build_protobuf}
 if [ $? -ne 0 ]; then
     error
 fi
-echo "[1-2] cmake ${deps_protobuf} -G ${generators} -DCMAKE_INSTALL_PREFIX=${install_path} -Dprotobuf_BUILD_TESTS=OFF -Dprotobuf_WITH_ZLIB=OFF"
-cmake ${deps_protobuf} -G ${generators} -DCMAKE_INSTALL_PREFIX=${install_path} -Dprotobuf_BUILD_TESTS=OFF -Dprotobuf_WITH_ZLIB=OFF
+echo "[1-2] cmake ${deps_protobuf} -G ${generators} -DCMAKE_INSTALL_PREFIX=${install_path} -Dprotobuf_BUILD_TESTS=OFF -Dprotobuf_WITH_ZLIB=OFF -DCMAKE_POSITION_INDEPENDENT_CODE=ON"
+cmake ${deps_protobuf} -G ${generators} -DCMAKE_INSTALL_PREFIX=${install_path} -Dprotobuf_BUILD_TESTS=OFF -Dprotobuf_WITH_ZLIB=OFF -DCMAKE_POSITION_INDEPENDENT_CODE=ON
 echo "[1-2] cmake --build . --target install --config ${config}"
 cmake --build . --target install --config ${config}
 
@@ -85,10 +80,14 @@ cmake --build . --target install --config ${config}
 # [2] build src
 echo "[2] build src..."
 cd ${build_path}
-echo "[2] cmake ${root_path} -G ${generators} -DCMAKE_INSTALL_PREFIX=${install_path}"
-cmake ${root_path} -G ${generators} -DCMAKE_INSTALL_PREFIX=${install_path}
+echo "[2] cmake ${root_path} -G ${generators} -DCMAKE_INSTALL_PREFIX=${install_path} -DCMAKE_POSITION_INDEPENDENT_CODE=ON"
+cmake ${root_path} -G ${generators} -DCMAKE_INSTALL_PREFIX=${install_path} -DCMAKE_POSITION_INDEPENDENT_CODE=ON
 echo "[2] cmake --build . --target install --config ${config}"
 cmake --build . --target install --config ${config}
 
 
-success
+# [3] build exit [0,1]
+echo "[3] build success!!!"
+export LD_LIBRARY_PATH=${install_path}/lib
+${install_path}/bin/sample-main
+exit 0

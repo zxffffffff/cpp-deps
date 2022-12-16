@@ -85,6 +85,7 @@ cmake --build . --target install --config %config%
 :: [3] build exit [0,1]
 :success
 echo "[3] build success!!!"
+%install_path%\bin\sample-main.exe
 exit 0
 
 :error

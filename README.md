@@ -9,10 +9,10 @@
     - sample-datacenter: 自定义的数据中心库，依赖 sample-pb、sample-tools
     - sample-main: 可执行文件，依赖 sample-datacenter
 - deps: 3rd工程目录，从 github 等开源平台获取
-- build: 编译生成目录（3rd & src）
-- install: 编译安装目录（3rd & src）
+- build: 编译生成目录（deps & src）
+- install: 编译安装目录（deps & src）
 - build-win.bat: win端【一键build脚本】，已验证: win10
-- build-unix.sh: unix端【一键build脚本】，已验证: ubuntu
+- build-unix.sh: unix端【一键build脚本】，已验证: ubuntu20.04
 
 # zlib-1.2.13
 - 来源: https://github.com/madler/zlib
@@ -24,4 +24,5 @@
 - 已加入【一键build脚本】[1-2]
 - 依赖zlib（可选）-Dprotobuf_WITH_ZLIB=ON -DZLIB_INCLUDE_DIR=%install_zlib2%/include -DZLIB_LIB=%install_zlib2%/lib
 - 关闭test（可选）-Dprotobuf_BUILD_TESTS=OFF
-- 动态链接MSVC（建议）-Dprotobuf_MSVC_STATIC_RUNTIME=OFF
+- 静态链接问题（MSVC） -Dprotobuf_MSVC_STATIC_RUNTIME=OFF
+- 静态链接问题（GCC） -DCMAKE_POSITION_INDEPENDENT_CODE=ON
