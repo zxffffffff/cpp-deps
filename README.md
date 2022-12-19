@@ -5,7 +5,7 @@
 # 目录说明
 - src: 工程目录，各个sample代码
     - sample-pb: 自定义的pb库，依赖 protobuf
-    - sample-tools: 各个三方工具库，依赖 zlib
+    - sample-tools: 各个三方工具库，依赖 zlib、libuv
     - sample-datacenter: 自定义的数据中心库，依赖 sample-pb、sample-tools
     - sample-main: 可执行文件，依赖 sample-datacenter
 - deps: 3rd工程目录，从 github 等开源平台获取
@@ -26,3 +26,7 @@
 - 关闭test（可选）-Dprotobuf_BUILD_TESTS=OFF
 - 静态链接问题（MSVC） -Dprotobuf_MSVC_STATIC_RUNTIME=OFF
 - 静态链接问题（GCC） -DCMAKE_POSITION_INDEPENDENT_CODE=ON
+
+# libuv-1.44.2
+- 来源：https://github.com/libuv/libuv
+- 已加入【一键build脚本】[1-3]

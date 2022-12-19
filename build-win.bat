@@ -67,9 +67,31 @@ cd %build_protobuf%
 if not %ERRORLEVEL% == 0 (
     goto error
 )
-echo "[1-2] cmake %deps_protobuf% -G %generators% -DCMAKE_INSTALL_PREFIX=%install_path2% -Dprotobuf_BUILD_TESTS=OFF -Dprotobuf_WITH_ZLIB=OFF -Dprotobuf_MSVC_STATIC_RUNTIME=OFF"
-cmake %deps_protobuf% -G %generators% -DCMAKE_INSTALL_PREFIX=%install_path2% -Dprotobuf_BUILD_TESTS=OFF -Dprotobuf_WITH_ZLIB=OFF -Dprotobuf_MSVC_STATIC_RUNTIME=OFF
+echo "[1-2] cmake %deps_protobuf% -G %generators% -DCMAKE_INSTALL_PREFIX=%install_path2% -Dprotobuf_WITH_ZLIB=OFF -Dprotobuf_MSVC_STATIC_RUNTIME=OFF"
+cmake %deps_protobuf% -G %generators% -DCMAKE_INSTALL_PREFIX=%install_path2% -Dprotobuf_WITH_ZLIB=OFF -Dprotobuf_MSVC_STATIC_RUNTIME=OFF
 echo "[1-2] cmake --build . --target install --config %config%"
+cmake --build . --target install --config %config%
+
+
+:: [1-3] build libuv
+echo "[1-3] build libuv..."
+set deps_libuv=%deps_path%\libuv
+set build_libuv=%build_path%\libuv
+echo deps_libuv: %deps_libuv%
+echo build_libuv:  %build_libuv%
+if not exist %deps_libuv% (
+    goto error
+)
+if not exist %build_libuv% (
+    mkdir %build_libuv%
+)
+cd %build_libuv%
+if not %ERRORLEVEL% == 0 (
+    goto error
+)
+echo "[1-3] cmake %deps_libuv% -G %generators%  -DCMAKE_INSTALL_PREFIX=%install_path2%"
+cmake %deps_libuv% -G %generators%  -DCMAKE_INSTALL_PREFIX=%install_path2%
+echo "[1-3] cmake --build . --target install --config %config%"
 cmake --build . --target install --config %config%
 
 

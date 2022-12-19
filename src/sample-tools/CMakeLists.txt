@@ -12,9 +12,12 @@ add_compile_definitions(SAMPLE_TOOLS_EXPORTS)
 
 # 引入zlib库
 find_package(ZLIB REQUIRED)
-message(STATUS "[sample-tools] ZLIB_VERSION : ${ZLIB_VERSION}")
+message(STATUS "[sample-tools] ZLIB_VERSION_STRING : ${ZLIB_VERSION_STRING}")
 message(STATUS "[sample-tools] ZLIB_INCLUDE_DIRS : ${ZLIB_INCLUDE_DIRS}")
 message(STATUS "[sample-tools] ZLIB_LIBRARIES : ${ZLIB_LIBRARIES}")
+
+# 引入libuv库（uv）
+find_package(LIBUV REQUIRED)
 
 add_library(${PROJECT_NAME} SHARED
     SampleTools.cpp
@@ -23,10 +26,12 @@ add_library(${PROJECT_NAME} SHARED
 
 target_link_libraries(${PROJECT_NAME}
     PRIVATE ${ZLIB_LIBRARIES}
+    PRIVATE uv
 )
 
 target_include_directories(${PROJECT_NAME}
     PRIVATE ${ZLIB_INCLUDE_DIRS}
+    PRIVATE uv
     PUBLIC ${PROJECT_SOURCE_DIR}
 )
 
