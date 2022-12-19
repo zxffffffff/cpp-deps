@@ -71,9 +71,31 @@ cd ${build_protobuf}
 if [ $? -ne 0 ]; then
     error
 fi
-echo "[1-2] cmake ${deps_protobuf} -G ${generators} -DCMAKE_INSTALL_PREFIX=${install_path} -Dprotobuf_BUILD_TESTS=OFF -Dprotobuf_WITH_ZLIB=OFF -DCMAKE_POSITION_INDEPENDENT_CODE=ON"
-cmake ${deps_protobuf} -G ${generators} -DCMAKE_INSTALL_PREFIX=${install_path} -Dprotobuf_BUILD_TESTS=OFF -Dprotobuf_WITH_ZLIB=OFF -DCMAKE_POSITION_INDEPENDENT_CODE=ON
+echo "[1-2] cmake ${deps_protobuf} -G ${generators} -DCMAKE_INSTALL_PREFIX=${install_path} -Dprotobuf_WITH_ZLIB=OFF -DCMAKE_POSITION_INDEPENDENT_CODE=ON"
+cmake ${deps_protobuf} -G ${generators} -DCMAKE_INSTALL_PREFIX=${install_path} -Dprotobuf_WITH_ZLIB=OFF -DCMAKE_POSITION_INDEPENDENT_CODE=ON
 echo "[1-2] cmake --build . --target install --config ${config}"
+cmake --build . --target install --config ${config}
+
+
+# [1-3] build libuv
+echo "[1-3] build libuv..."
+deps_libuv=${deps_path}/libuv
+build_libuv=${build_path}/libuv
+echo deps_libuv: ${deps_libuv}
+echo build_libuv:  ${build_libuv}
+if [ ! -d ${deps_libuv} ]; then
+    error
+fi
+if [ ! -d ${build_libuv} ]; then
+    mkdir -p ${build_libuv}
+fi
+cd ${build_libuv}
+if [ $? -ne 0 ]; then
+    error
+fi
+echo "[1-3] cmake ${deps_libuv} -G ${generators} -DCMAKE_INSTALL_PREFIX=${install_path}"
+cmake ${deps_libuv} -G ${generators} -DCMAKE_INSTALL_PREFIX=${install_path}
+echo "[1-3] cmake --build . --target install --config ${config}"
 cmake --build . --target install --config ${config}
 
 

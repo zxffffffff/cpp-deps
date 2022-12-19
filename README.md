@@ -1,6 +1,7 @@
 # cpp-deps
 - 用最简单直观的方式引入常用的开源跨平台C++库，包括网络层、数据层、基础组件等。
-- 编译流程参考 Qt6 和 node.js，使用cmake管理
+- 使用cmake管理工程项目，做到跨平台开箱即用。
+- Windows 需要安装 vs2022，Linux 需要安装 Ninja，可以修改脚本替换为任意开发环境。
 
 # 目录说明
 - src: 工程目录，各个sample代码
@@ -15,10 +16,12 @@
 - build-unix.sh: unix端【一键build脚本】，已验证: ubuntu20.04
 
 # zlib-1.2.13
+- 最流行的压缩算法库
 - 来源: https://github.com/madler/zlib
 - 已加入【一键build脚本】[1-1]
 
 # protobuf-cpp-3.21.11
+- google开源数据序列化库，广泛用于高性能数据传输
 - 来源: https://developers.google.com/protocol-buffers
 - 文档: https://github.com/protocolbuffers/protobuf/blob/main/cmake/README.md
 - 已加入【一键build脚本】[1-2]
@@ -28,5 +31,6 @@
 - 静态链接问题（GCC） -DCMAKE_POSITION_INDEPENDENT_CODE=ON
 
 # libuv-1.44.2
+- node.js使用的异步I/O事件库，支持TCP、UDP，需要自己实现HTTP、WS握手协议
 - 来源：https://github.com/libuv/libuv
 - 已加入【一键build脚本】[1-3]
