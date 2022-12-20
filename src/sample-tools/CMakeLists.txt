@@ -19,6 +19,11 @@ message(STATUS "[sample-tools] ZLIB_LIBRARIES : ${ZLIB_LIBRARIES}")
 # 引入libuv库（uv）
 find_package(LIBUV REQUIRED)
 
+# 引入curl库
+find_package(CURL REQUIRED)
+message(STATUS "[sample-tools] CURL_VERSION_STRING : ${CURL_VERSION_STRING}")
+message(STATUS "[sample-tools] CURL_INCLUDE_DIR : ${CURL_INCLUDE_DIR}")
+
 add_library(${PROJECT_NAME} SHARED
     SampleTools.cpp
     SampleTools.h
@@ -27,11 +32,13 @@ add_library(${PROJECT_NAME} SHARED
 target_link_libraries(${PROJECT_NAME}
     PRIVATE ${ZLIB_LIBRARIES}
     PRIVATE uv
+    PRIVATE CURL::libcurl
 )
 
 target_include_directories(${PROJECT_NAME}
     PRIVATE ${ZLIB_INCLUDE_DIRS}
     PRIVATE uv
+    PRIVATE CURL::libcurl
     PUBLIC ${PROJECT_SOURCE_DIR}
 )
 

@@ -99,6 +99,28 @@ echo "[1-3] cmake --build . --target install --config ${config}"
 cmake --build . --target install --config ${config}
 
 
+# [1-4] build curl
+echo "[1-4] build curl..."
+deps_curl=${deps_path}/curl
+build_curl=${build_path}/curl
+echo deps_curl: ${deps_curl}
+echo build_curl:  ${build_curl}
+if [ ! -d ${deps_curl} ]; then
+    error
+fi
+if [ ! -d ${build_curl} ]; then
+    mkdir -p ${build_curl}
+fi
+cd ${build_curl}
+if [ $? -ne 0 ]; then
+    error
+fi
+echo "[1-4] cmake ${deps_curl} -G ${generators} -DCMAKE_INSTALL_PREFIX=${install_path}"
+cmake ${deps_curl} -G ${generators} -DCMAKE_INSTALL_PREFIX=${install_path}
+echo "[1-4] cmake --build . --target install --config ${config}"
+cmake --build . --target install --config ${config}
+
+
 # [2] build src
 echo "[2] build src..."
 cd ${build_path}
