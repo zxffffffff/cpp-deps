@@ -23,6 +23,7 @@ find_package(LIBUV REQUIRED)
 find_package(CURL REQUIRED)
 message(STATUS "[sample-tools] CURL_VERSION_STRING : ${CURL_VERSION_STRING}")
 message(STATUS "[sample-tools] CURL_INCLUDE_DIR : ${CURL_INCLUDE_DIR}")
+message(STATUS "[sample-tools] CURL_LIBRARIES : ${CURL_LIBRARIES}")
 
 add_library(${PROJECT_NAME} SHARED
     SampleTools.cpp

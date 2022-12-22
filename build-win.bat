@@ -11,8 +11,8 @@ set generators="Visual Studio 17 2022"
 set config=Debug
 set root_path=%~dp0
 set deps_path=%root_path%deps
-set build_path=%root_path%build
-set install_path=%root_path%install
+set build_path=%root_path%build\%config%
+set install_path=%root_path%install\%config%
 set install_path2=%install_path:\=/%
 echo generators:  %generators%
 echo root_path: %root_path%
@@ -67,8 +67,8 @@ cd %build_protobuf%
 if not %ERRORLEVEL% == 0 (
     goto error
 )
-echo "[1-2] cmake %deps_protobuf% -G %generators% -DCMAKE_INSTALL_PREFIX=%install_path2% -Dprotobuf_WITH_ZLIB=OFF -Dprotobuf_MSVC_STATIC_RUNTIME=OFF"
-cmake %deps_protobuf% -G %generators% -DCMAKE_INSTALL_PREFIX=%install_path2% -Dprotobuf_WITH_ZLIB=OFF -Dprotobuf_MSVC_STATIC_RUNTIME=OFF
+echo "[1-2] cmake %deps_protobuf% -G %generators% -DCMAKE_INSTALL_PREFIX=%install_path2% -Dprotobuf_BUILD_TESTS=OFF -Dprotobuf_WITH_ZLIB=OFF -Dprotobuf_MSVC_STATIC_RUNTIME=OFF"
+cmake %deps_protobuf% -G %generators% -DCMAKE_INSTALL_PREFIX=%install_path2% -Dprotobuf_BUILD_TESTS=OFF -Dprotobuf_WITH_ZLIB=OFF -Dprotobuf_MSVC_STATIC_RUNTIME=OFF
 echo "[1-2] cmake --build . --target install --config %config%"
 cmake --build . --target install --config %config%
 
@@ -111,8 +111,8 @@ cd %build_curl%
 if not %ERRORLEVEL% == 0 (
     goto error
 )
-echo "[1-4] cmake %deps_curl% -G %generators%  -DCMAKE_INSTALL_PREFIX=%install_path2%"
-cmake %deps_curl% -G %generators%  -DCMAKE_INSTALL_PREFIX=%install_path2%
+echo "[1-4] cmake %deps_curl% -G %generators%  -DCMAKE_INSTALL_PREFIX=%install_path2% -DCURL_USE_OPENSSL=ON -DBUILD_CURL_EXE=OFF"
+cmake %deps_curl% -G %generators%  -DCMAKE_INSTALL_PREFIX=%install_path2% -DCURL_USE_OPENSSL=ON -DBUILD_CURL_EXE=OFF
 echo "[1-4] cmake --build . --target install --config %config%"
 cmake --build . --target install --config %config%
 

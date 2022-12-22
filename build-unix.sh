@@ -18,8 +18,8 @@ generators="Ninja"
 config=Debug
 root_path=$(dirname $(readlink -f  "$0"))
 deps_path=${root_path}/deps
-build_path=${root_path}/build
-install_path=${root_path}/install
+build_path=${root_path}/build/${config}
+install_path=${root_path}/install/${config}
 echo root_path: ${root_path}
 echo deps_path: ${deps_path}
 echo build_path: ${build_path}
@@ -71,8 +71,8 @@ cd ${build_protobuf}
 if [ $? -ne 0 ]; then
     error
 fi
-echo "[1-2] cmake ${deps_protobuf} -G ${generators} -DCMAKE_INSTALL_PREFIX=${install_path} -Dprotobuf_WITH_ZLIB=OFF -DCMAKE_POSITION_INDEPENDENT_CODE=ON"
-cmake ${deps_protobuf} -G ${generators} -DCMAKE_INSTALL_PREFIX=${install_path} -Dprotobuf_WITH_ZLIB=OFF -DCMAKE_POSITION_INDEPENDENT_CODE=ON
+echo "[1-2] cmake ${deps_protobuf} -G ${generators} -DCMAKE_INSTALL_PREFIX=${install_path} -Dprotobuf_BUILD_TESTS=OFF -Dprotobuf_WITH_ZLIB=OFF -DCMAKE_POSITION_INDEPENDENT_CODE=ON"
+cmake ${deps_protobuf} -G ${generators} -DCMAKE_INSTALL_PREFIX=${install_path} -Dprotobuf_BUILD_TESTS=OFF -Dprotobuf_WITH_ZLIB=OFF -DCMAKE_POSITION_INDEPENDENT_CODE=ON
 echo "[1-2] cmake --build . --target install --config ${config}"
 cmake --build . --target install --config ${config}
 
@@ -115,8 +115,8 @@ cd ${build_curl}
 if [ $? -ne 0 ]; then
     error
 fi
-echo "[1-4] cmake ${deps_curl} -G ${generators} -DCMAKE_INSTALL_PREFIX=${install_path}"
-cmake ${deps_curl} -G ${generators} -DCMAKE_INSTALL_PREFIX=${install_path}
+echo "[1-4] cmake ${deps_curl} -G ${generators} -DCMAKE_INSTALL_PREFIX=${install_path} -DCURL_USE_OPENSSL=ON -DBUILD_CURL_EXE=OFF"
+cmake ${deps_curl} -G ${generators} -DCMAKE_INSTALL_PREFIX=${install_path} -DCURL_USE_OPENSSL=ON -DBUILD_CURL_EXE=OFF
 echo "[1-4] cmake --build . --target install --config ${config}"
 cmake --build . --target install --config ${config}
 
