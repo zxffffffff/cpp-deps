@@ -1,4 +1,4 @@
-﻿# The real minimum version will be checked by the qtbase project.
+# The real minimum version will be checked by the qtbase project.
 # 3.16 is the absolute minimum though.
 cmake_minimum_required (VERSION 3.16)
 
@@ -6,11 +6,11 @@ project ("cpp-deps")
 message("[cpp-deps] -------- start")
 
 message(STATUS "[cpp-deps] PROJECT_SOURCE_DIR : ${PROJECT_SOURCE_DIR}")
+message(STATUS "[cpp-deps] CMAKE_BUILD_TYPE : ${CMAKE_BUILD_TYPE}")
 
 # 指定find_package搜索路径
 list(APPEND CMAKE_PREFIX_PATH 
-    "${CMAKE_SOURCE_DIR}/install/zlib"
-    "${CMAKE_SOURCE_DIR}/install/protobuf"
+    "${CMAKE_SOURCE_DIR}/install/${CMAKE_BUILD_TYPE}"
 )
 message(STATUS "[cpp-deps] CMAKE_PREFIX_PATH : ${CMAKE_PREFIX_PATH}")
 

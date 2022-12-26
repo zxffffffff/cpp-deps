@@ -49,8 +49,8 @@ cd ${build_zlib}
 if [ $? -ne 0 ]; then
     error
 fi
-echo "[1-1] cmake ${deps_zlib} -G ${generators} -DCMAKE_INSTALL_PREFIX=${install_path}"
-cmake ${deps_zlib} -G ${generators} -DCMAKE_INSTALL_PREFIX=${install_path}
+echo "[1-1] cmake ${deps_zlib} -G ${generators} -DCMAKE_BUILD_TYPE=${config} -DCMAKE_INSTALL_PREFIX=${install_path}"
+cmake ${deps_zlib} -G ${generators} -DCMAKE_BUILD_TYPE=${config} -DCMAKE_INSTALL_PREFIX=${install_path}
 echo "[1-1] cmake --build . --target install --config ${config}"
 cmake --build . --target install --config ${config}
 
@@ -71,8 +71,8 @@ cd ${build_protobuf}
 if [ $? -ne 0 ]; then
     error
 fi
-echo "[1-2] cmake ${deps_protobuf} -G ${generators} -DCMAKE_INSTALL_PREFIX=${install_path} -Dprotobuf_BUILD_TESTS=OFF -Dprotobuf_WITH_ZLIB=OFF -DCMAKE_POSITION_INDEPENDENT_CODE=ON"
-cmake ${deps_protobuf} -G ${generators} -DCMAKE_INSTALL_PREFIX=${install_path} -Dprotobuf_BUILD_TESTS=OFF -Dprotobuf_WITH_ZLIB=OFF -DCMAKE_POSITION_INDEPENDENT_CODE=ON
+echo "[1-2] cmake ${deps_protobuf} -G ${generators} -DCMAKE_BUILD_TYPE=${config} -DCMAKE_INSTALL_PREFIX=${install_path} -Dprotobuf_BUILD_TESTS=OFF -Dprotobuf_WITH_ZLIB=OFF -DCMAKE_POSITION_INDEPENDENT_CODE=ON"
+cmake ${deps_protobuf} -G ${generators} -DCMAKE_BUILD_TYPE=${config} -DCMAKE_INSTALL_PREFIX=${install_path} -Dprotobuf_BUILD_TESTS=OFF -Dprotobuf_WITH_ZLIB=OFF -DCMAKE_POSITION_INDEPENDENT_CODE=ON
 echo "[1-2] cmake --build . --target install --config ${config}"
 cmake --build . --target install --config ${config}
 
@@ -93,8 +93,8 @@ cd ${build_libuv}
 if [ $? -ne 0 ]; then
     error
 fi
-echo "[1-3] cmake ${deps_libuv} -G ${generators} -DCMAKE_INSTALL_PREFIX=${install_path}"
-cmake ${deps_libuv} -G ${generators} -DCMAKE_INSTALL_PREFIX=${install_path}
+echo "[1-3] cmake ${deps_libuv} -G ${generators} -DCMAKE_BUILD_TYPE=${config} -DCMAKE_INSTALL_PREFIX=${install_path}"
+cmake ${deps_libuv} -G ${generators} -DCMAKE_BUILD_TYPE=${config} -DCMAKE_INSTALL_PREFIX=${install_path}
 echo "[1-3] cmake --build . --target install --config ${config}"
 cmake --build . --target install --config ${config}
 
@@ -115,8 +115,8 @@ cd ${build_curl}
 if [ $? -ne 0 ]; then
     error
 fi
-echo "[1-4] cmake ${deps_curl} -G ${generators} -DCMAKE_INSTALL_PREFIX=${install_path} -DCURL_USE_OPENSSL=ON -DBUILD_CURL_EXE=OFF"
-cmake ${deps_curl} -G ${generators} -DCMAKE_INSTALL_PREFIX=${install_path} -DCURL_USE_OPENSSL=ON -DBUILD_CURL_EXE=OFF
+echo "[1-4] cmake ${deps_curl} -G ${generators} -DCMAKE_BUILD_TYPE=${config} -DCMAKE_INSTALL_PREFIX=${install_path} -DCURL_USE_OPENSSL=ON -DBUILD_CURL_EXE=OFF"
+cmake ${deps_curl} -G ${generators} -DCMAKE_BUILD_TYPE=${config} -DCMAKE_INSTALL_PREFIX=${install_path} -DCURL_USE_OPENSSL=ON -DBUILD_CURL_EXE=OFF
 echo "[1-4] cmake --build . --target install --config ${config}"
 cmake --build . --target install --config ${config}
 
@@ -124,8 +124,8 @@ cmake --build . --target install --config ${config}
 # [2] build src
 echo "[2] build src..."
 cd ${build_path}
-echo "[2] cmake ${root_path} -G ${generators} -DCMAKE_INSTALL_PREFIX=${install_path} -DCMAKE_POSITION_INDEPENDENT_CODE=ON"
-cmake ${root_path} -G ${generators} -DCMAKE_INSTALL_PREFIX=${install_path} -DCMAKE_POSITION_INDEPENDENT_CODE=ON
+echo "[2] cmake ${root_path} -G ${generators} -DCMAKE_BUILD_TYPE=${config} -DCMAKE_INSTALL_PREFIX=${install_path} -DCMAKE_POSITION_INDEPENDENT_CODE=ON"
+cmake ${root_path} -G ${generators} -DCMAKE_BUILD_TYPE=${config} -DCMAKE_INSTALL_PREFIX=${install_path} -DCMAKE_POSITION_INDEPENDENT_CODE=ON
 echo "[2] cmake --build . --target install --config ${config}"
 cmake --build . --target install --config ${config}
 

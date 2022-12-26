@@ -7,13 +7,13 @@ message("[sample-pb] -------- start")
 
 message(STATUS "[sample-pb] PROJECT_SOURCE_DIR : ${PROJECT_SOURCE_DIR}")
 
-# ÒýÈëprotobuf¿â
+# å¼•å…¥protobufåº“
 find_package(Protobuf REQUIRED)
 message(STATUS "[sample-pb] Protobuf_VERSION : ${Protobuf_VERSION}")
 message(STATUS "[sample-pb] Protobuf_INCLUDE_DIRS : ${Protobuf_INCLUDE_DIRS}")
 message(STATUS "[sample-pb] Protobuf_LIBRARIES : ${Protobuf_LIBRARIES}")
 
-# ::ÓÉÓÚPROTOBUF_GENERATE_CPPÖ»ÄÜ±àÒëÒ»¸öÄ¿Â¼ÏÂµÄproto£¬¾¡Á¿Ñ¡ÔñÊÖ¶¯Éú³Épb.cc£¬²Î¿¼general-cpp.bat
+# ::ç”±äºŽPROTOBUF_GENERATE_CPPåªèƒ½ç¼–è¯‘ä¸€ä¸ªç›®å½•ä¸‹çš„protoï¼Œå°½é‡é€‰æ‹©æ‰‹åŠ¨ç”Ÿæˆpb.ccï¼Œå‚è€ƒgeneral-cpp.bat
 
 set(sample_files
     pb_cpp/MsgType.pb.cc
@@ -54,7 +54,7 @@ target_link_libraries(${PROJECT_NAME}
     PUBLIC ${Protobuf_LIBRARIES}
 )
 
-# ²»±©Â¶protobufÏà¹ØÄÚÈÝ£¬½ö±©Â¶SmaplePB
+# ä¸æš´éœ²protobufç›¸å…³å†…å®¹ï¼Œä»…æš´éœ²SmaplePB
 target_include_directories(${PROJECT_NAME}
     PUBLIC ${Protobuf_INCLUDE_DIRS}
     PUBLIC ${PROJECT_SOURCE_DIR}/pb_cpp

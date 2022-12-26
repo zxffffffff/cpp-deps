@@ -7,7 +7,7 @@ message("[sample-datacenter] -------- start")
 
 message(STATUS "[sample-datacenter] PROJECT_SOURCE_DIR : ${PROJECT_SOURCE_DIR}")
 
-# dllµ¼³öºê
+# dllÂµÂ¼Â³Ã¶ÂºÃª
 add_compile_definitions(SAMPLE_DATACENTER_EXPORTS)
 
 add_library(${PROJECT_NAME} SHARED

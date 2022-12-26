@@ -1,4 +1,4 @@
-::由于PROTOBUF_GENERATE_CPP只能编译一个目录下的proto，尽量选择手动生成pb.cc，以下为脚本示例
+::鐢变簬PROTOBUF_GENERATE_CPP鍙兘缂栬瘧涓�涓洰褰曚笅鐨刾roto锛屽敖閲忛�夋嫨鎵嬪姩鐢熸垚pb.cc锛屼互涓嬩负鑴氭湰绀轰緥
 
 SET pbExe=%~dp0\..\..\install\protobuf\bin\protoc.exe
 SET pbDir=%~dp0\pb

@@ -7,19 +7,19 @@ message("[sample-tools] -------- start")
 
 message(STATUS "[sample-tools] PROJECT_SOURCE_DIR : ${PROJECT_SOURCE_DIR}")
 
-# dllµ¼³öºê
+# dllå¯¼å‡ºå®
 add_compile_definitions(SAMPLE_TOOLS_EXPORTS)
 
-# ÒıÈëzlib¿â
+# å¼•å…¥zlibåº“
 find_package(ZLIB REQUIRED)
 message(STATUS "[sample-tools] ZLIB_VERSION_STRING : ${ZLIB_VERSION_STRING}")
 message(STATUS "[sample-tools] ZLIB_INCLUDE_DIRS : ${ZLIB_INCLUDE_DIRS}")
 message(STATUS "[sample-tools] ZLIB_LIBRARIES : ${ZLIB_LIBRARIES}")
 
-# ÒıÈëlibuv¿â£¨uv£©
+# å¼•å…¥libuvåº“ï¼ˆuvï¼‰
 find_package(LIBUV REQUIRED)
 
-# ÒıÈëcurl¿â
+# å¼•å…¥curlåº“
 find_package(CURL REQUIRED)
 message(STATUS "[sample-tools] CURL_VERSION_STRING : ${CURL_VERSION_STRING}")
 message(STATUS "[sample-tools] CURL_INCLUDE_DIR : ${CURL_INCLUDE_DIR}")

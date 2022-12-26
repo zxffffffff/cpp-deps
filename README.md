@@ -13,7 +13,7 @@
 - build: 编译生成目录（deps & src）
 - install: 编译安装目录（deps & src）
 - build-win.bat: win端【一键build脚本】，已验证: win10
-- build-unix.sh: unix端【一键build脚本】，已验证: ubuntu20.04
+- build-unix.sh: unix端【一键build脚本】，未验证
 
 # zlib-1.2.13
 - 最流行的压缩算法库

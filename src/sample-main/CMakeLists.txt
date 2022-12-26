@@ -1,4 +1,4 @@
-﻿# The real minimum version will be checked by the qtbase project.
+# The real minimum version will be checked by the qtbase project.
 # 3.16 is the absolute minimum though.
 cmake_minimum_required (VERSION 3.16)
 
