@@ -1,3 +1,7 @@
+# 废弃
+- 第三方库编译依赖复杂，无法做到无感编译，需要借助包管理工具 vcpkg
+- 改为 https://github.com/zxffffffff/cpp-deps-vcpkg
+
 # cpp-deps
 - 用最简单直观的方式引入常用的开源跨平台C++库，包括网络层、数据层、基础组件等。
 - 使用cmake管理工程项目，做到跨平台开箱即用。
