@@ -1,8 +1,8 @@
-# 废弃
-- 第三方库编译依赖复杂，无法做到无感编译，需要借助包管理工具 vcpkg
-- 改为 https://github.com/zxffffffff/cpp-deps-vcpkg
+# 提醒
+- 第三方库编译依赖复杂，需要安装较多软件
+- 建议使用 vcpkg 进行第三方包管理 https://github.com/zxffffffff/start-cpp-vcpkg
 
-# cpp-deps
+# start-cpp
 - 用最简单直观的方式引入常用的开源跨平台C++库，包括网络层、数据层、基础组件等。
 - 使用cmake管理工程项目，做到跨平台开箱即用。
 - Windows 需要安装 vs2022，Linux 需要安装 Ninja，可以修改脚本替换为任意开发环境。
